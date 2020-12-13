@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { HotelContext } from "../../context/hotelContext";
 const Filter = () => {
   const { theme } = useTheme();
-  const { state, dispatch } = useContext(HotelContext);
+  const { dispatch } = useContext(HotelContext);
   const [change, setChange] = useState(true);
   useEffect(() => {}, [change]);
   const { id } = useParams();
@@ -50,7 +50,6 @@ const Filter = () => {
       setChange(!change);
     }
   };
-  console.log(state);
   return (
     <FilterWrapper>
       <FilterForm onChange={handelChange}>
