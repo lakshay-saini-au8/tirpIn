@@ -7,4 +7,4 @@ state management using context reudcer hooks , styled-components, and theme chan
 
 Live:- https://tripin.vercel.app/
 
-![Trip In](https://github.com/lakshay-saini-au8/tripIn/blob/master/tripin.gif)
+![Trip In](https://github.com/lakshay-saini-au8/tirpIn/blob/master/tripin.gif)
