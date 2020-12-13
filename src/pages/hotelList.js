@@ -13,18 +13,22 @@ const HotelList = () => {
     axios.get(`https://developerfunnel.herokuapp.com/hotels?city=${randomNo}`);
   const gethotlelist = () =>
     axios.get(`https://developerfunnel.herokuapp.com/hotellist/${id}`);
+
   useEffect(() => {
-    axios.all([getSuggestion(), gethotlelist()]).then(
-      axios.spread((...res) => {
-        dispatch({ type: "SET_SUGESSTION", payload: res[0].data });
-        dispatch({ type: "SET_HOTEL_LIST", payload: res[1].data });
-      })
-    );
+    const getData = () => {
+      axios.all([getSuggestion(), gethotlelist()]).then(
+        axios.spread((...res) => {
+          dispatch({ type: "SET_SUGESSTION", payload: res[0].data });
+          dispatch({ type: "SET_HOTEL_LIST", payload: res[1].data });
+        })
+      );
+    };
+    getData();
     return () => {
       dispatch({ type: "SET_SUGESSTION", payload: null });
       dispatch({ type: "SET_HOTEL_LIST", payload: null });
     };
-  }, [id, dispatch]);
+  }, [dispatch]);
   return (
     <>
       {state.suggestion === null && state.hotelList === null ? (
