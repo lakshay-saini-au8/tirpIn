@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from "react-router-dom";
+import "./App.css";
+import GlobalStyle from "./globalStyles";
+import Home from "./pages";
+import Navbar from "./components/Navbar";
+import { useTheme } from "./customHook/useTheme";
+import HotelDetail from "./pages/hotelDetail";
+import HotelList from "./pages/hotelList";
 
 function App() {
+  const { theme } = useTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle theme={theme} />
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/list/:id" component={HotelList} />
+        <Route exact path="/details/:id" component={HotelDetail} />
+      </Switch>
+    </>
   );
 }
 
