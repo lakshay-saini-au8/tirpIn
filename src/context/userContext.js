@@ -16,8 +16,10 @@ const userReducer = (state, { type, payload }) => {
       return { ...state, allBookings: payload };
     case "RESET_BOOKING_DETAILS":
       return { ...state, bookingHotelDetails: null };
+    case "RESET_ALLBOOKING_DETAILS":
+      return { ...state, allBookings: null };
     case "RESET_USER":
-      return { userInfo: null, bookingHotelDetails: null };
+      return { userInfo: null, bookingHotelDetails: null, allBookings: null };
 
     default:
       return { ...state };

@@ -29,7 +29,7 @@ const LoginComp = ({ dispatch, bookingId }) => {
     const { data } = await userLogin(userInput.email, userInput.password);
     const { user, message } = data;
     if (user) {
-      dispatch({ type: "SET_USER", payload: user });
+      dispatch({ type: "SET_USER", payload: { user } });
       if (bookingId) {
         history.push(`/booking/${bookingId}`);
       }

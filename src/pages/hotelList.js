@@ -28,6 +28,7 @@ const HotelList = () => {
       dispatch({ type: "SET_SUGESSTION", payload: null });
       dispatch({ type: "SET_HOTEL_LIST", payload: null });
     };
+    // eslint-disable-next-line
   }, [dispatch]);
   return (
     <>

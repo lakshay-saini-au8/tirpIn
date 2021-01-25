@@ -32,9 +32,14 @@ const Navbar = () => {
             />
           )}
           {userInfo ? (
-            <LoginBtn to="#" onClick={handleLogout} theme={theme}>
-              Logout
-            </LoginBtn>
+            <>
+              <LoginBtn to="/allBooking" theme={theme}>
+                All Booking
+              </LoginBtn>
+              <LoginBtn to="#" onClick={handleLogout} theme={theme}>
+                Logout
+              </LoginBtn>
+            </>
           ) : (
             <LoginBtn to="/login" theme={theme}>
               Login

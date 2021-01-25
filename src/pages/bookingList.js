@@ -1,26 +1,38 @@
-import React, { useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Redirect, useLocation } from "react-router-dom";
 import { useUserContext } from "../customHook/useUserContext";
 import Loader from "../components/Loader";
 import BookListComp from "../components/BookListComp";
-import { getAllBooking } from "../utils/api";
+import { getAllBooking, getAllQueryBooking } from "../utils/api";
 const BookingList = () => {
   const { state, dispatch } = useUserContext();
   const { userInfo, allBookings } = state;
+  const param = useLocation();
+  const [bookingState, setBookingState] = useState(false);
+  const q = param.search.split("=")[1];
   useEffect(() => {
     if (userInfo) {
-      getAllBooking(userInfo.user.token).then((data) => {
-        dispatch({
-          type: "SET_ALLBOOKING_DETAILS",
-          payload: data.data.bookings,
+      if (q) {
+        getAllQueryBooking(q, userInfo.user.token).then((data) => {
+          dispatch({
+            type: "SET_ALLBOOKING_DETAILS",
+            payload: data.data.bookings,
+          });
         });
-      });
+      } else {
+        getAllBooking(userInfo.user.token).then((data) => {
+          dispatch({
+            type: "SET_ALLBOOKING_DETAILS",
+            payload: data.data.bookings,
+          });
+        });
+      }
     }
 
     return () => {
-      dispatch({ type: "SET_BOOKING_DETAILS", payload: null });
+      dispatch({ type: "RESET_ALLBOOKING_DETAILS", payload: null });
     };
-  }, [userInfo, dispatch]);
+  }, [userInfo, dispatch, bookingState, q]);
   return (
     <>
       {!userInfo ? (
@@ -28,7 +40,10 @@ const BookingList = () => {
       ) : !allBookings ? (
         <Loader />
       ) : (
-        <BookListComp />
+        <BookListComp
+          bookingState={bookingState}
+          setBookingState={setBookingState}
+        />
       )}
     </>
   );

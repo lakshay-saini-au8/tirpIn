@@ -14,7 +14,7 @@ const BookingComp = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [error, setError] = useState(null);
-  const { state, dispatch } = useUserContext();
+  const { state } = useUserContext();
   const { bookingHotelDetails, userInfo } = state;
   const { name, city_name, cost, city } = bookingHotelDetails[0];
   var d = new Date();
@@ -47,7 +47,7 @@ const BookingComp = () => {
   return (
     <BCContainer>
       <BCWrapper>
-        <h2>Login</h2>
+        <h2>Book Your Hotel</h2>
         {error && <p>{error}</p>}
         <FormContainer onSubmit={submitChange}>
           <InputGroup>
