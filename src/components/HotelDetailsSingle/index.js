@@ -14,20 +14,24 @@ import {
   HDSTitle,
   HDSWrapper,
   Roomtype,
+  BookingBtn,
 } from "./HDSElements";
 const HotelDetailsSingle = () => {
   const { state } = useContext(HotelContext);
   const { theme } = useContext(ThemeContext);
-  const { cost, type, thumb, name, locality, address } = state.hotelDetails[0];
+  const {
+    _id,
+    cost,
+    type,
+    thumb,
+    name,
+    locality,
+    address,
+  } = state.hotelDetails[0];
   return (
     <HDSContanier>
       <HDSWrapper>
         <HDSImgWrapper>
-          <Roomtype theme={theme}>
-            {type.map((item) => (
-              <p key={item.roomtype}>{item.name}</p>
-            ))}
-          </Roomtype>
           <HDSImg src={thumb} theme={theme} />
         </HDSImgWrapper>
         <HDSInfoWrapper>
@@ -38,6 +42,11 @@ const HotelDetailsSingle = () => {
             </p>
           </HDSCost>
           <HDSTitle>{name}</HDSTitle>
+          <Roomtype theme={theme}>
+            {type.map((item) => (
+              <p key={item.roomtype}>{item.name}</p>
+            ))}
+          </Roomtype>
           <HDSDesc theme={theme}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -55,6 +64,9 @@ const HotelDetailsSingle = () => {
             <p>{locality}</p>
             <p>{address}</p>
           </HDSAddress>
+          <BookingBtn to={`/booking/${_id}`} theme={theme}>
+            Book Now
+          </BookingBtn>
         </HDSInfoWrapper>
       </HDSWrapper>
     </HDSContanier>

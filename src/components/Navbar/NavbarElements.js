@@ -49,3 +49,20 @@ export const ThemeBtnLight = styled(HiOutlineLightBulb)`
   font-size: 3rem;
   cursor: pointer;
 `;
+export const LoginBtn = styled(Link)`
+  border: none;
+  background-color: #2756b3;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  @media screen and (max-width: 950px) {
+    font-size: 10px;
+    padding: 8px 13px;
+  }
+`;

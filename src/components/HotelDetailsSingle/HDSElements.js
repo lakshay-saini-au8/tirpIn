@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HDSContanier = styled.div`
   display: flex;
@@ -10,11 +11,14 @@ export const HDSContanier = styled.div`
 export const HDSWrapper = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
   padding: 25px 50px;
   max-width: 1400px;
   @media screen and (max-width: 500px) {
     padding: 25px;
+  }
+  @media screen and (max-width: 990px) {
+    flex-direction: column;
   }
 `;
 
@@ -25,7 +29,6 @@ export const HDSImgWrapper = styled.div`
 
 export const Roomtype = styled.div`
   display: flex;
-  position: absolute;
   p {
     background: #2756b3;
     margin: 8px;
@@ -42,13 +45,18 @@ export const Roomtype = styled.div`
 `;
 
 export const HDSImg = styled.img`
-  width: 100%;
-  height: 350px;
+  width: 40vw;
+  height: 500px;
+  margin-right: 50px;
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: ${({ theme }) => theme.shadow};
   @media screen and (max-width: 500px) {
     height: 250px;
+  }
+  @media screen and (max-width: 990px) {
+    width: 100%;
+    margin-right: 0px;
   }
 `;
 
@@ -93,4 +101,21 @@ export const HDSAddress = styled.div`
   font-size: 0.8rem;
   font-weight: bold;
   color: ${({ theme }) => theme.text};
+`;
+export const BookingBtn = styled(Link)`
+  border: none;
+  background-color: #2756b3;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  text-decoration: none;
+  @media screen and (max-width: 950px) {
+    font-size: 10px;
+    padding: 8px 13px;
+  }
 `;

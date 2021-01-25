@@ -5,13 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { HotelProvider } from "./context/hotelContext";
 import { AppThemeProvider } from "./context/themeContext";
+import { UserProvider } from "./context/userContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AppThemeProvider>
         <HotelProvider>
-          <App />
+          <UserProvider>
+            <App />
+          </UserProvider>
         </HotelProvider>
       </AppThemeProvider>
     </Router>
