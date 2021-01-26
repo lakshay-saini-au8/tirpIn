@@ -114,7 +114,6 @@ export const getAllQueryBooking = async (q, token) => {
   }
 };
 export const updateStatus = async (id, q, token) => {
-  console.log(token);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -125,6 +124,30 @@ export const updateStatus = async (id, q, token) => {
     const { data } = await axios.post(
       `${BASE_URL}/booking/accept`,
       { id, q },
+      config
+    );
+    return { data };
+  } catch (error) {
+    return {
+      message:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    };
+  }
+};
+
+export const hotelDateFilter = async (token, name, date) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  };
+  try {
+    const { data } = await axios.post(
+      `${BASE_URL}/booking/filter`,
+      { name, date },
       config
     );
     return { data };

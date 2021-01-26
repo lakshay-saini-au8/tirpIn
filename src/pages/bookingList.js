@@ -43,6 +43,7 @@ const BookingList = () => {
         <BookListComp
           bookingState={bookingState}
           setBookingState={setBookingState}
+          q={q}
         />
       )}
     </>

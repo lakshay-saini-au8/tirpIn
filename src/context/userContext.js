@@ -5,6 +5,7 @@ const initialState = {
     : null,
   bookingHotelDetails: null,
   allBookings: null,
+  allHotels: null,
 };
 const userReducer = (state, { type, payload }) => {
   switch (type) {
@@ -14,6 +15,8 @@ const userReducer = (state, { type, payload }) => {
       return { ...state, bookingHotelDetails: payload };
     case "SET_ALLBOOKING_DETAILS":
       return { ...state, allBookings: payload };
+    case "GET_ALL_HOTEL":
+      return { ...state, allHotels: payload };
     case "RESET_BOOKING_DETAILS":
       return { ...state, bookingHotelDetails: null };
     case "RESET_ALLBOOKING_DETAILS":

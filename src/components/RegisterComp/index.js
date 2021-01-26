@@ -34,7 +34,7 @@ const RegisterComp = ({ state, dispatch }) => {
       const { user, message: messageLogin } = data;
       if (user) {
         setLoading(false);
-        dispatch({ type: "SET_USER", payload: user });
+        dispatch({ type: "SET_USER", payload: { user } });
       } else {
         setError(messageLogin);
       }
