@@ -81,11 +81,13 @@ const BookListComp = ({ bookingState, setBookingState, q }) => {
               alignSelf: "flex-start",
               marginBottom: "20px",
               alignItems: "center",
+              flexWrap: "wrap",
             }}
           >
             <div
               style={{
                 display: "flex",
+                flexWrap: "wrap",
               }}
             >
               <Btn to="/allBooking" theme={theme} onClick={handleAll}>
@@ -102,6 +104,7 @@ const BookListComp = ({ bookingState, setBookingState, q }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
+                flexWrap: "wrap",
               }}
             >
               <CHSelect theme={theme} name="name" onChange={handleCityChange}>
@@ -127,72 +130,83 @@ const BookListComp = ({ bookingState, setBookingState, q }) => {
         {allBookings.length === 0 ? (
           "No Booking Till Now"
         ) : (
-          <table
-            border="1"
-            style={{ background: "#fff", width: "100%", textAlign: "center" }}
+          <div
+            style={{
+              overflowX: "scroll",
+              width: "100%",
+            }}
           >
-            <thead>
-              <tr>
-                <th>Hotel Name</th>
-                <th>City Name</th>
-                <th>Price</th>
-                <th>Booking Date</th>
-                {userInfo.user.role === "admin" ? (
-                  <>
-                    <td>Customer Name</td> <td>Booking Status</td>
-                    {q === "completed" ? null : <td>Action</td>}
-                  </>
-                ) : (
-                  <th>Status</th>
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {allBookings.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.hotelName}</td>
-                  <td>{item.cityName}</td>
-                  <td>{item.price}</td>
-                  <td>{item.bookingDate.split("T")[0]}</td>
+            <table
+              border="1"
+              style={{
+                background: "#fff",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th>Hotel Name</th>
+                  <th>City Name</th>
+                  <th>Price</th>
+                  <th>Booking Date</th>
                   {userInfo.user.role === "admin" ? (
                     <>
-                      <td>{item.userId.name}</td>
-
-                      <td>{item.isAccepted ? "Confirm" : "Not Confirmed"}</td>
-                      {q === "completed" ? null : (
-                        <td>
-                          <BtnStatus
-                            onClick={handleAction}
-                            data-id={item._id}
-                            data-status={
-                              !item.isAccepted ? "accept" : "rejected"
-                            }
-                            theme={theme}
-                            style={{
-                              background: `${
-                                !item.isAccepted ? "green" : "red"
-                              }`,
-                            }}
-                          >
-                            {item.isAccepted ? "Reject" : "Accept"}
-                          </BtnStatus>
-                        </td>
-                      )}
+                      <td>Customer Name</td> <td>Booking Status</td>
+                      {q === "completed" ? null : <td>Action</td>}
                     </>
                   ) : (
-                    <td
-                      style={{
-                        color: `${!item.isAccepted ? "red" : "green"}`,
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {item.isAccepted ? "Confirm" : "Not Confirmed"}
-                    </td>
+                    <th>Status</th>
                   )}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {allBookings.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.hotelName}</td>
+                    <td>{item.cityName}</td>
+                    <td>{item.price}</td>
+                    <td>{item.bookingDate.split("T")[0]}</td>
+                    {userInfo.user.role === "admin" ? (
+                      <>
+                        <td>{item.userId.name}</td>
+
+                        <td>{item.isAccepted ? "Confirm" : "Not Confirmed"}</td>
+                        {q === "completed" ? null : (
+                          <td>
+                            <BtnStatus
+                              onClick={handleAction}
+                              data-id={item._id}
+                              data-status={
+                                !item.isAccepted ? "accept" : "rejected"
+                              }
+                              theme={theme}
+                              style={{
+                                background: `${
+                                  !item.isAccepted ? "green" : "red"
+                                }`,
+                              }}
+                            >
+                              {item.isAccepted ? "Reject" : "Accept"}
+                            </BtnStatus>
+                          </td>
+                        )}
+                      </>
+                    ) : (
+                      <td
+                        style={{
+                          color: `${!item.isAccepted ? "red" : "green"}`,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item.isAccepted ? "Confirm" : "Not Confirmed"}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </BLCWrapper>
     </BLCContainer>

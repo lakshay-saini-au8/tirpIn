@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tripinapi.herokuapp.com";
 export const userLogin = async (email, password) => {
   const config = {
     headers: {
@@ -12,7 +12,9 @@ export const userLogin = async (email, password) => {
       { email, password },
       config
     );
-    localStorage.setItem("userLogin", JSON.stringify(data));
+    if (!Object.keys(data).includes("message")) {
+      localStorage.setItem("userLogin", JSON.stringify(data));
+    }
     return { data };
   } catch (error) {
     return {
